@@ -59,7 +59,6 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location              = var.rg_location
   resource_group_name   = var.rg_name
   size                  =  var.vm_size
-  delete_os_disk_on_termination = true
   admin_username       = "azuser"
   admin_password       = "Devops@123456"
   network_interface_ids = [azurerm_network_interface.privateip.id]
