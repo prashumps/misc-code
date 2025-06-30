@@ -3,6 +3,7 @@ resource "azurerm_public_ip" "publicip" {
   resource_group_name = var.rg_name
   location            = var.rg_location
   allocation_method   = "Dynamic"
+  sku                 = "Basic"
 }
 
 resource "azurerm_network_interface" "privateip" {
