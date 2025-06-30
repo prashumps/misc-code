@@ -63,6 +63,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   admin_username       = "azuser"
   admin_password       = "Devops@123456"
   network_interface_ids = [azurerm_network_interface.privateip.id]
+  disable_password_authentication = true
 
   os_disk {
     name              = "${var.name}-disk"
