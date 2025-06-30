@@ -79,6 +79,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 }
 
 resource "azurerm_dns_a_record" "publicip_dns_record" {
+  depends_on          = [azurerm_public_ip.publicip]
   name                = var.name
   zone_name           = "prashumps.online"
   resource_group_name = var.rg_name
