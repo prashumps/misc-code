@@ -27,7 +27,7 @@ variable "values" {
         catalogue_url = "http://catalogue-dev.prashumps.online:8080/"
         user_url      = "http://user-dev.prashumps.online:8080/"
         cart_url      = "http://cart-dev.prashumps.online:8080/"
-        shippinge_url = "http://shipping-dev.prashumps.online:8080/"
+        shipping_url  = "http://shipping-dev.prashumps.online:8080/"
         payment_url   = "http://payment-dev.prashumps.online:8080/"
       }
     }
