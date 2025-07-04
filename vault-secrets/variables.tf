@@ -80,6 +80,16 @@ variable "values" {
         cart_url      = "http://cart-dev.prashumps.online:8080/"
         shipping_url  = "http://shipping-dev.prashumps.online:8080/"
         payment_url   = "http://payment-dev.prashumps.online:8080/"
+        CATALOGUE_HOST = "catalogue-dev.prashumps.online"
+        CATALOGUE_PORT: 8080
+        USER_HOST = "user-dev.prashumps.online"
+        USER_PORT = 8080
+        CART_HOST = "cart-dev.prashumps.online"
+        CART_PORT = 8080
+        SHIPPING_HOST = "shipping-dev.prashumps.online"
+        SHIPPING_PORT = 8080
+        PAYMENT_HOST = "payment-dev.prashumps.online"
+        PAYMENT_PORT = 8080
       }
     }
 
