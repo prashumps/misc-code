@@ -43,8 +43,10 @@ variable "values" {
     shipping = {
       secret = "roboshop-dev"
       value = {
-        CART_ENDPOINT="cart-dev.prashumps.online:8080"
-        DB_HOST="mysql-dev.prashumps.online"
+        CART_ENDPOINT ="cart-dev.prashumps.online:8080"
+        DB_HOST ="mysql-dev.prashumps.online"
+        username = "root"
+        password = "RoboShop@1"
       }
     }
 
