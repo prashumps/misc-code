@@ -26,12 +26,12 @@ variable "values" {
     catalogue = {
       secret = "roboshop-dev"
       value = {
-        MONGO="true"
-        MONGO_URL="mongodb://mongodb-dev.prashumps.online:27017/catalogue"
-        DB_TYPE="mongo"
-        APP_GIT_URL="https://github.com/roboshop-devops-project-v3/catalogue"
-        DB_HOST="mongodb-dev.prashumps.online"
-        SCHEMA_FILE="db/master-data.js"
+        MONGO = "true"
+        MONGO_URL = "mongodb://mongodb-dev.prashumps.online:27017/catalogue"
+        DB_TYPE = "mongo"
+        APP_GIT_URL = "https://github.com/roboshop-devops-project-v3/catalogue"
+        DB_HOST = "mongodb-dev.prashumps.online"
+        SCHEMA_FILE = "db/master-data.js"
       }
     }
 
