@@ -47,14 +47,15 @@ variable "values" {
     shipping = {
       secret = "roboshop-dev"
       value = {
-        CART_ENDPOINT ="cart-dev.prashumps.online:8080"
-        DB_HOST ="mysql-dev.prashumps.online"
+        CART_ENDPOINT = "cart-dev.prashumps.online:8080"
+        DB_HOST = "mysql-dev.prashumps.online"
         DB_USER = "root"
         DB_PASS = "RoboShop@1"
         username = "root"
         password = "RoboShop@1"
-        DB_TYPE="mysql"
-        APP_GIT_URL="https://github.com/roboshop-devops-project-v3/shipping"
+        DB_TYPE = "mysql"
+        APP_GIT_URL = "https://github.com/roboshop-devops-project-v3/shipping"
+        SCHEMA_FILE="db/master-data.js"
       }
     }
 
