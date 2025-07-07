@@ -18,7 +18,7 @@ variable "values" {
       secret = "roboshop-dev"
       value = {
         REDIS_HOST="redis-dev.prashumps.online"
-        CATALOGUE_HOST="catalogue-dev.prashumps.online"
+        CATALOGUE_HOST="catalogue"
         CATALOGUE_PORT=8080
       }
     }
@@ -31,7 +31,6 @@ variable "values" {
         DB_TYPE = "mongo"
         APP_GIT_URL = "https://github.com/roboshop-devops-project-v3/catalogue"
         DB_HOST = "mongodb-dev.prashumps.online"
-        SCHEMA_FILE = "db/master-data.js"
       }
     }
 
@@ -61,9 +60,9 @@ variable "values" {
     payment = {
       secret = "roboshop-dev"
       value = {
-        CART_HOST="cart-dev.prashumps.online"
+        CART_HOST="cart"
         CART_PORT="8080"
-        USER_HOST="user-dev.prashumps.online"
+        USER_HOST="user"
         USER_PORT="8080"
         AMQP_HOST="rabbitmq-dev.prashumps.online"
         AMQP_USER="roboshop"
@@ -79,15 +78,15 @@ variable "values" {
         cart_url      = "http://cart-dev.prashumps.online:8080/"
         shipping_url  = "http://shipping-dev.prashumps.online:8080/"
         payment_url   = "http://payment-dev.prashumps.online:8080/"
-        CATALOGUE_HOST = "catalogue-dev.prashumps.online"
+        CATALOGUE_HOST = "catalogue"
         CATALOGUE_PORT: 8080
-        USER_HOST = "user-dev.prashumps.online"
+        USER_HOST = "user"
         USER_PORT = 8080
-        CART_HOST = "cart-dev.prashumps.online"
+        CART_HOST = "cart"
         CART_PORT = 8080
-        SHIPPING_HOST = "shipping-dev.prashumps.online"
+        SHIPPING_HOST = "shipping"
         SHIPPING_PORT = 8080
-        PAYMENT_HOST = "payment-dev.prashumps.online"
+        PAYMENT_HOST = "payment"
         PAYMENT_PORT = 8080
       }
     }
