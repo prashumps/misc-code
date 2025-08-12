@@ -24,37 +24,6 @@ resource "azurerm_network_interface_security_group_association" "nsg-attach" {
   network_security_group_id = "/subscriptions/fce3d656-0949-412a-9e49-d5c96a4783c9/resourceGroups/project-setup/providers/Microsoft.Network/networkSecurityGroups/project-setup-allow-all"
 }
 
-# resource "azurerm_virtual_machine" "vm" {
-#   name                  = var.name
-#   location              = var.rg_location
-#   resource_group_name   = var.rg_name
-#   network_interface_ids = [azurerm_network_interface.privateip.id]
-#   vm_size               = var.vm_size
-#
-#   delete_os_disk_on_termination = true
-#
-#   storage_image_reference {
-#     id = "/subscriptions/fce3d656-0949-412a-9e49-d5c96a4783c9/resourceGroups/project-setup/providers/Microsoft.Compute/images/local-devops-practice"
-#   }
-#
-#   storage_os_disk {
-#     name              = "${var.name}-disk"
-#     caching           = "ReadWrite"
-#     create_option     = "FromImage"
-#     managed_disk_type = "Standard_LRS"
-#   }
-#
-#   os_profile {
-#     computer_name  = var.name
-#     admin_username = "azuser"
-#     admin_password = "Devops@123456"
-#   }
-#
-#   os_profile_linux_config {
-#     disable_password_authentication = false
-#   }
-# }
-
 resource "azurerm_linux_virtual_machine" "vm" {
   name                  = var.name
   location              = var.rg_location
