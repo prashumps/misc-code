@@ -53,7 +53,7 @@ resource "azurerm_dns_a_record" "publicip_dns_record" {
   zone_name           = "prashumps.online"
   resource_group_name = var.rg_name
   ttl                 = 3
-  target_resource_id  = [azurerm_public_ip.publicip.ip_address]
+  target_resource_id  = [azurerm_public_ip.publicip.id]
 }
 
 resource "azurerm_dns_a_record" "private_dns_record" {
@@ -61,5 +61,5 @@ resource "azurerm_dns_a_record" "private_dns_record" {
   zone_name           = "prashumps.online"
   resource_group_name = var.rg_name
   ttl                 = 3
-  target_resource_id  = [azurerm_network_interface.privateip.private_ip_address]
+  target_resource_id  = [azurerm_network_interface.privateip.id]
 }
