@@ -17,7 +17,7 @@ variable "values" {
       secret = "roboshop-dev"
       value = {
         REDIS_HOST="redis-dev.prashumps.online"
-        CATALOGUE_HOST="catalogue"
+        CATALOGUE_HOST="catalogue-dev.prashumps.online"
         CATALOGUE_PORT=8080
       }
     }
@@ -30,6 +30,7 @@ variable "values" {
         DB_TYPE = "mongo"
         APP_GIT_URL = "https://github.com/roboshop-devops-project-v3/catalogue"
         DB_HOST = "mongodb-dev.prashumps.online"
+        SCHEMA_FILE = "db/master-data.js"
       }
     }
 
@@ -45,7 +46,7 @@ variable "values" {
     shipping = {
       secret = "roboshop-dev"
       value = {
-        CART_ENDPOINT = "cart:8080"
+        CART_ENDPOINT = "cart-dev.prashumps.online:8080"
         DB_HOST = "mysql-dev.prashumps.online"
         DB_USER = "root"
         DB_PASS = "RoboShop@1"
