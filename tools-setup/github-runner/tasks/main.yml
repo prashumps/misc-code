@@ -1,32 +1,58 @@
-- name: Download repo file
-  ansible.builtin.get_url:
-    url: https://download.docker.com/linux/rhel/docker-ce.repo
-    dest: /etc/yum.repos.d/docker-ce.repo
+- name: Configure GitHub runners
+  hosts: github-runner-int.prashumps.online
+  become: true
 
-- name: install docker
-  ansible.builtin.dnf:
-    name: docker-ce
-    state: installed
+  pre_tasks:
+    - name: Ensure pip is installed on control node
+      ansible.builtin.package:
+        name: python3-pip
+        state: present
+      delegate_to: localhost
+      run_once: true
 
-- name: Start docker
-  ansible.builtin.systemd_service:
-    name: docker
-    state: started
-    enabled: yes
+    - name: Install hvac (Vault Python client) on control node
+      ansible.builtin.pip:
+        name: hvac
+        state: present
+        executable: pip3
+      delegate_to: localhost
+      run_once: true
 
-- name: Create runner containers
-  loop:
-    - runner-1
-    - runner-2
-    - runner-3
-  community.docker.docker_container:
-    name: "{{ item }}"
-    image: prasanthreddymps/github-runner
-    state: started
-    pull: always
-    restart: true
-    restart_policy: always
-    env:
-      ORG: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-infra/data/github-runner:ORG token={{ token }} url=http://vault-int.prashumps.online:8200') }}"
-      TOKEN: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-infra/data/github-runner:TOKEN token={{ token }} url=http://vault-int.prashumps.online:8200') }}"
-      NAME: "{{ item }}"
+    - name: Ensure community.hashi_vault collection is installed
+      ansible.builtin.command: ansible-galaxy collection install community.hashi_vault
+      delegate_to: localhost
+      run_once: true
+
+  tasks:
+    - name: Download repo file
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/rhel/docker-ce.repo
+        dest: /etc/yum.repos.d/docker-ce.repo
+
+    - name: Install docker
+      ansible.builtin.dnf:
+        name: docker-ce
+        state: installed
+
+    - name: Start docker
+      ansible.builtin.systemd_service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Create runner containers
+      loop:
+        - runner-1
+        - runner-2
+        - runner-3
+      community.docker.docker_container:
+        name: "{{ item }}"
+        image: prasanthreddymps/github-runner
+        state: started
+        pull: always
+        restart: true
+        restart_policy: always
+        env:
+          ORG: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-infra/data/github-runner:ORG token={{ token }} url=http://vault-int.prashumps.online:8200') }}"
+          TOKEN: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-infra/data/github-runner:TOKEN token={{ token }} url=http://vault-int.prashumps.online:8200') }}"
+          NAME: "{{ item }}"
