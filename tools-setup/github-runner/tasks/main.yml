@@ -13,3 +13,20 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Create runner containers
+  loop:
+    - runner-1
+    - runner-2
+    - runner-3
+  community.docker.docker_container:
+    name: {{ item }}
+    image: prasanthreddymps/github-runner
+    state: started
+    pull: always
+    restart: true
+    restart_policy: always
+    env:
+      ORG: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-infra/data/github-runner:ORG token={{ token }} url=http://vault-int.prashumps.online:8200') }}"
+      TOKEN: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-infra/data/github-runner:TOKEN token={{ token }} url=http://vault-int.prashumps.online:8200') }}"
+      NAME: "{{ item }}"
