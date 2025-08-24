@@ -1,3 +1,4 @@
+---
 - name: Configure GitHub runners
   hosts: github-runner-int.prashumps.online
   become: true
