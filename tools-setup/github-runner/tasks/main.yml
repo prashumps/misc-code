@@ -20,7 +20,7 @@
     - runner-2
     - runner-3
   community.docker.docker_container:
-    name: {{ item }}
+    name: "{{ item }}"
     image: prasanthreddymps/github-runner
     state: started
     pull: always
