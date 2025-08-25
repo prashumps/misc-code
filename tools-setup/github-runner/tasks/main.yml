@@ -16,7 +16,7 @@
 
 - name: Get Runner token
   ansible.builtin.shell: |
-  gh api --method POST -H "Accept:application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28"   /orgs/prashumps/actions/runners/registration-token | jq .token | xargs
+    gh api --method POST -H "Accept:application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28"   /orgs/prashumps/actions/runners/registration-token | jq .token | xargs
   delegate_to: localhost
   register: gh_auth_token
 
