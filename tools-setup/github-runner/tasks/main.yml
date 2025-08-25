@@ -14,6 +14,12 @@
     state: started
     enabled: yes
 
+- name: Get Runner token
+  ansible.builtin.shell: |
+  gh api --method POST -H "Accept:application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28"   /orgs/prashumps/actions/runners/registration-token | jq .token | xargs
+  delegate_to: localhost
+  register: gh_auth_token
+
 - name: Create runner containers
   loop:
     - runner-1
@@ -28,5 +34,5 @@
     restart_policy: always
     env:
       ORG: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-infra/data/github-runner:ORG token={{ token }} url=http://vault-int.prashumps.online:8200') }}"
-      TOKEN: "{{ lookup('community.hashi_vault.hashi_vault', 'secret=roboshop-infra/data/github-runner:TOKEN token={{ token }} url=http://vault-int.prashumps.online:8200') }}"
+      TOKEN: "{{ gh_auth_token.stdout }}"
       NAME: "{{ item }}"
