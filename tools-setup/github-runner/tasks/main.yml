@@ -30,6 +30,8 @@
     image: prasanthreddymps/github-runner
     state: started
     pull: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: true
     restart_policy: always
     env:
