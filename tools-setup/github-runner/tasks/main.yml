@@ -24,6 +24,24 @@
   delegate_to: localhost
   register: gh_auth_token
 
+#- block:
+#    - name: Check root filesystem usage
+#      ansible.builtin.shell: df -P / | awk 'NR==2 {print $5}' | sed 's/%//'
+#      register: disk_use
+#      changed_when: false
+#
+#    - name: Get all github-runner image IDs sorted by creation date (latest first)
+#      ansible.builtin.command: docker images prasanthreddymps/github-runner --format '{{.ID}}' --no-trunc --sort=created
+#      register: runner_images
+#      when: disk_use.stdout | int > 85
+#
+#    - name: Remove old github-runner images (keep latest)
+#      ansible.builtin.command: docker rmi {{ item }}
+#      loop: "{{ runner_images.stdout_lines[1:] }}"
+#      when: disk_use.stdout | int > 85 and runner_images.stdout_lines | length > 1
+#      ignore_errors: true
+#  when: disk_use.stdout | int > 85
+
 - name: Create runner containers
   loop:
     - runner-1
